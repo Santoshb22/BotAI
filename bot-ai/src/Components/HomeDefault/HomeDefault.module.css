@@ -1,0 +1,26 @@
+.botQuestionHeading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.botQuestionHeading p {
+    font-family: Ubuntu;
+    font-weight: 500;
+    font-size: 28px;
+    line-height: 32.17px;   
+}
+
+.botQuestionHeading img {
+    height: 69px;
+    width: 65.3px;
+    border-radius: 100%;
+}
+
+.randomQCard {
+    max-width: 1024px;
+    display: grid;
+    grid-template-columns: 512px 1fr;
+    gap: 10px;
+}

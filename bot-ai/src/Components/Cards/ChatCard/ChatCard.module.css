@@ -1,0 +1,13 @@
+.chatCardImg img{
+    width: 69px;
+    height: 69px;
+}
+
+.soulAI, .you {
+    font-weight: 700;
+    font-size: 16px;
+    line-height: 18.38px;
+    font-family: Ubuntu;
+    display: block;
+    margin-bottom: 8px;
+}
