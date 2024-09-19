@@ -1,6 +1,5 @@
 import { useEffect, useState } from "react";
 import BotAiText from "../../Components/BotAiText";
-import Button from "../../Components/Button/Button";
 import HomeDefault from "../../Components/HomeDefault/HomeDefault";
 import Sidebar from "../../Components/Sidebar/Sidebar"
 import styles from "./Home.module.css";
@@ -16,13 +15,18 @@ const Home = () => {
   const [chatQnA, setChatQnA] = useState([]);
   const [userInput, setuserInput] = useState("");
 
-
   const handleInputChange = (value) => {
     setuserInput(value)
   }
 
+  const handleStartNewChat = () => {
+    setChatQnA([]);
+    setStartChatting(false);
+  }
+
   useEffect(() => {
     if(randomClicked) {
+      const time = new Date().toLocaleTimeString()
       setChatQnA((prev) => {
        return [...prev,
         { id: randomClicked.id,
@@ -31,7 +35,8 @@ const Home = () => {
           bot_img: botAIImg,
           user_img: userImg,
           rating: null,
-          feedback: null
+          feedback: null,
+          message_time: time
         }]
       })
       setStartChatting(true);
@@ -39,14 +44,10 @@ const Home = () => {
   }, [randomClicked])
 
 
-  useEffect(() => {
-    console.log("Updated chatQuestions:", chatQnA);
-  }, [chatQnA]);
-
   return (
     <div className={styles.homePage}>
         <div className={styles.sideBar}>
-            <Sidebar/>
+            <Sidebar onClick = {handleStartNewChat} />
         </div>
 
 
@@ -66,7 +67,7 @@ const Home = () => {
                   </div>
                 ))
               ) : (
-                <h2>Something went wrong</h2>
+                <h2 className={styles.notFoundinData}>Question not found in dummy data</h2>
               )}
             </div>
           ) : (

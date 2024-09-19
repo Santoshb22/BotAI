@@ -8,7 +8,8 @@ import { Typography } from '@mui/material';
 import navLogo from "../../assets/nav-logo.png";
 import newChat from "../../assets/new-chat.png";
 import styles from "./Sidebar.module.css";
-export default function Sidebar() {
+
+export default function Sidebar({onClick}) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
   const isMobile = useMediaQuery(theme.breakpoints.down('sm'));
@@ -24,7 +25,7 @@ export default function Sidebar() {
       >
         <img className={styles.navbarLogo} src={navLogo} alt="logo" />
         <Typography  sx={{color: "#414146", fontWeight: 400, fontSize: "20px", lineHeight: "22.98px"}}>New Chat</Typography>
-        <img src={newChat} alt="new chat icon" />
+        <img onClick={onClick} src={newChat} alt="new chat icon" />
       </Box>
       
       <Box sx = {{height: 39, width: 175.16, borderRadius: "10px", alignContent: "center", textAlign: "center", marginTop:2, marginX: "auto",  backgroundColor: theme.palette.secondary.light}}>

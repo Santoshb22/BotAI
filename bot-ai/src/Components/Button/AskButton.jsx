@@ -15,6 +15,8 @@ const AskButton = ({userInput, setuserInput, setStartChatting, setChatQnA}) => {
         setStartChatting(true);
 
         if(matchData) {
+
+            const time = new Date().toLocaleTimeString();
             setChatQnA(prev => [
                 ...prev, {
                     id: matchData.id, 
@@ -22,6 +24,7 @@ const AskButton = ({userInput, setuserInput, setStartChatting, setChatQnA}) => {
                     response: matchData.response,
                     bot_img: botAIImg,
                     user_img: userImg,
+                    message_time: time,
                 }
             ])
         } else {

@@ -11,3 +11,12 @@
     display: block;
     margin-bottom: 8px;
 }
+
+.time {
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 12.38px;
+    font-family: Ubuntu;
+    display: block;
+    color: rgb(164, 163, 163);
+}

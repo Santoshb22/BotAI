@@ -5,26 +5,25 @@ import { Box, Rating } from '@mui/material';
 import styles from "./ChatCard.module.css"
 import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import MyModal from '../../Modal/MyModal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 export default function ChatCard({data, showQuestion = false, showAnswer = false, setChatQnA}) {
-    const [value, setValue] = useState(0)
-    const [isRating, setIsRating] = useState(false);
+const [value, setValue] = useState(0)
+const [isRating, setIsRating] = useState(false);
 
-    const {question, response, bot_img, user_img, feedback} = data
+const {question, response, bot_img, user_img, feedback, message_time, id} = data
 
-    const showRating = () => {
-        setIsRating(true);
-    }
+const showRating = () => {
+    setIsRating(true);
+}
 
-    const handleRating = (newValue) => {
-        setValue(newValue);
-        setChatQnA(prev => prev.map(item => 
-            item.id === data.id? {...item, rating: newValue} : item
-        ))
-    }
+const handleRating = (newValue) => {
+    setValue(newValue);
+    setChatQnA(prev => prev.map(item => 
+        item.id === data.id? {...item, rating: newValue} : item
+    ))
+}
 
-    console.log(data);
   return (
     <Box>
         <Card 
@@ -40,9 +39,10 @@ export default function ChatCard({data, showQuestion = false, showAnswer = false
             <Box>
                 <CardContent >
                     {showQuestion && 
-                    <Typography gutterBottom variant="body1" sx={{ fontSize: "16px" }}>
+                    <Typography variant="body1" sx={{ fontSize: "16px" }}>
                         <span className={styles.you}>You</span>
                         {question}
+                        <span className={styles.time}>{message_time}</span>
                     </Typography>}
                 
                     {
@@ -51,6 +51,7 @@ export default function ChatCard({data, showQuestion = false, showAnswer = false
                         <Typography variant="body1" sx={{ fontSize: "16px",}}>
                         <span className={styles.soulAI}>Soul AI</span>
                         {response}
+                        <span className={styles.time}>{message_time}</span>
                         </Typography>
 
                         <br />
