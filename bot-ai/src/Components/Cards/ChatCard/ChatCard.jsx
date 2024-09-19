@@ -1,12 +1,30 @@
 import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import Typography from '@mui/material/Typography';
-import { Box } from '@mui/material';
+import { Box, Rating } from '@mui/material';
 import styles from "./ChatCard.module.css"
+import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
+import MyModal from '../../Modal/MyModal';
+import { useState } from 'react';
 
+export default function ChatCard({data, showQuestion = false, showAnswer = false, setChatQnA}) {
+    const [value, setValue] = useState(0)
+    const [isRating, setIsRating] = useState(false);
 
-export default function ChatCard({data, showQuestion = false, showAnswer = false}) {
-    const {question, response, bot_img, user_img} = data
+    const {question, response, bot_img, user_img, feedback} = data
+
+    const showRating = () => {
+        setIsRating(true);
+    }
+
+    const handleRating = (newValue) => {
+        setValue(newValue);
+        setChatQnA(prev => prev.map(item => 
+            item.id === data.id? {...item, rating: newValue} : item
+        ))
+    }
+
+    console.log(data);
   return (
     <Box>
         <Card 
@@ -15,30 +33,54 @@ export default function ChatCard({data, showQuestion = false, showAnswer = false
             borderRadius: "20px", display: 'flex', justifyContent: "start",
             alignItems: "center", marginBottom: 1, padding: 1,
         }}>
-        <Box className={styles.chatCardImg}>
-        <img src={showQuestion? user_img: bot_img} alt="user img" />
-        </Box>
-        <Box sx={{width: "50%"}}>
-        <CardContent>
-            {showQuestion && 
-            <Typography gutterBottom variant="body1" sx={{ fontSize: "16px" }}>
-                <span className={styles.you}>You</span>
-                 {question}
-            </Typography>}
-        
-        {showAnswer && <Typography variant="body1" sx={{ fontSize: "16px" }}>
-            <span className={styles.soulAI}>Soul AI</span>
-            {response}
-        </Typography>}
-        
-        </CardContent>
+            <Box className={styles.chatCardImg}>
+                <img src={showQuestion? user_img: bot_img} alt="user img" />
+            </Box>
+
+            <Box>
+                <CardContent >
+                    {showQuestion && 
+                    <Typography gutterBottom variant="body1" sx={{ fontSize: "16px" }}>
+                        <span className={styles.you}>You</span>
+                        {question}
+                    </Typography>}
+                
+                    {
+                    showAnswer 
+                    && <Box >
+                        <Typography variant="body1" sx={{ fontSize: "16px",}}>
+                        <span className={styles.soulAI}>Soul AI</span>
+                        {response}
+                        </Typography>
+
+                        <br />
+                        <Box>
+                            <button>
+                                <MyModal setChatQnA = {setChatQnA}/>
+                            </button>  
+
+                            <button onClick={showRating}>
+                                <ThumbUpOffAltIcon/>
+                            </button>    
+                        </Box>
+
+                            <br />
+                            {isRating && <Box>
+                                <Rating
+                                    name="simple-controlled"
+                                    value={value}
+                                    onChange={(event, newValue) => {handleRating(newValue)}}
+                                />
+                            </Box>}
+
+                            {feedback && <Typography>
+                                <b>Feedback: </b> {feedback}
+                            </Typography>}
+                       </Box>
+                    }
+            </CardContent>
         </Box>
         </Card>
-
-        {showAnswer && <div>
-            <button>like</button>
-            <button>dislike</button>
-        </div>}
     </Box>
   );
 }

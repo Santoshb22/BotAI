@@ -1,0 +1,21 @@
+.feedbackInput {
+    height: 187px;
+    width: 716px;
+
+}
+
+.feedbackForm img {
+    height: 42px;
+    width: 40px;
+}
+
+.feedbackInput {
+    width: 716px;
+    height: 187px;
+    border-radius: 10px;
+    padding: 10px;
+}
+
+.likeButton {
+    border: none;
+}

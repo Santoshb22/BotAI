@@ -8,6 +8,7 @@ import ChatCard from "../../Components/Cards/ChatCard/ChatCard";
 import botAIImg from "../../assets/botAIimg.png";
 import userImg from "../../assets/userimg.png";
 import AskButton from "../../Components/Button/AskButton";
+import SaveButton from "../../Components/Button/SaveButton";
 
 const Home = () => {
   const [randomClicked, setRandomClicked] = useState(null);
@@ -28,7 +29,9 @@ const Home = () => {
           question: randomClicked.question, 
           response: randomClicked.response, 
           bot_img: botAIImg,
-          user_img: userImg
+          user_img: userImg,
+          rating: null,
+          feedback: null
         }]
       })
       setStartChatting(true);
@@ -59,7 +62,7 @@ const Home = () => {
                 chatQnA.map((data) => (
                   <div key={data.id} className={styles.message}>
                     <ChatCard data={data} showQuestion = {true}/>
-                    <ChatCard data={data} showAnswer = {true}/>
+                    <ChatCard data={data} setChatQnA={setChatQnA} showAnswer = {true}/>
                   </div>
                 ))
               ) : (
@@ -80,7 +83,7 @@ const Home = () => {
                 />
 
                 <AskButton userInput = {userInput} setuserInput = {setuserInput} setChatQnA = {setChatQnA} setStartChatting = {setStartChatting}/>
-                <Button buttonText={"Save"}/>
+                <SaveButton chatQnA = {chatQnA} setChatQnA = {setChatQnA}/>
               </div>
             </div>
         </div>
