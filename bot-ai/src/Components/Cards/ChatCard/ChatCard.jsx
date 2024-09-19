@@ -10,7 +10,7 @@ import { useEffect, useState } from 'react';
 export default function ChatCard({data, showQuestion = false, showAnswer = false, setChatQnA}) {
 const [value, setValue] = useState(0)
 const [isRating, setIsRating] = useState(false);
-
+console.log("data:", data)
 const {question, response, bot_img, user_img, feedback, message_time, id} = data
 
 const showRating = () => {
@@ -28,7 +28,7 @@ const handleRating = (newValue) => {
     <Box>
         <Card 
             sx={{ maxWidth: 1015, minHeight: 105, 
-            boxShadow: "-4px 4px 15px 0px #0000001A",
+            boxShadow: showQuestion && showAnswer ? "none" : "-4px 4px 15px 0px #0000001A",
             borderRadius: "20px", display: 'flex', justifyContent: "start",
             alignItems: "center", marginBottom: 1, padding: 1,
         }}>

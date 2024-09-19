@@ -7,7 +7,7 @@ const HomeDefault = ({setRandomClicked}) => {
     const randomQ = [data[randomNum+1], data[randomNum+2], data[randomNum+3], data[randomNum+4]];
   
   return (
-    <div>
+    <div className={styles.defaultHomeContainer}>
         <div className={styles.botQuestionHeading}>
             <p>How Can I Help You Today?</p>
             <Logo/>

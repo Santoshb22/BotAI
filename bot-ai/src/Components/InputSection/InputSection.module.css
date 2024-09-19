@@ -1,0 +1,19 @@
+.inputContainer {
+    width: 100%;
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputBox {
+    width: 846px;
+    height: 41px;
+    border-radius: 5px;
+    border: 1px solid #00000073
+}
+
+.message {
+    margin: 20px 0px;
+}
+

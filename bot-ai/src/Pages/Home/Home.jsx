@@ -6,18 +6,12 @@ import styles from "./Home.module.css";
 import ChatCard from "../../Components/Cards/ChatCard/ChatCard";
 import botAIImg from "../../assets/botAIimg.png";
 import userImg from "../../assets/userimg.png";
-import AskButton from "../../Components/Button/AskButton";
-import SaveButton from "../../Components/Button/SaveButton";
+import InputSection from "../../Components/InputSection/InputSection";
 
 const Home = () => {
   const [randomClicked, setRandomClicked] = useState(null);
   const [startChatting, setStartChatting] = useState(false);
   const [chatQnA, setChatQnA] = useState([]);
-  const [userInput, setuserInput] = useState("");
-
-  const handleInputChange = (value) => {
-    setuserInput(value)
-  }
 
   const handleStartNewChat = () => {
     setChatQnA([]);
@@ -76,16 +70,11 @@ const Home = () => {
             </div>
           )}
 
-              <div className={styles.inputContainer}>
-                <input 
-                className={styles.inputBox} type = "text"
-                value={userInput}
-                onChange={(e) => {handleInputChange(e.target.value)}}
-                />
-
-                <AskButton userInput = {userInput} setuserInput = {setuserInput} setChatQnA = {setChatQnA} setStartChatting = {setStartChatting}/>
-                <SaveButton chatQnA = {chatQnA} setChatQnA = {setChatQnA}/>
-              </div>
+              <InputSection 
+              setChatQnA = {setChatQnA} 
+              setStartChatting = {setStartChatting} 
+              chatQnA = {chatQnA}
+              />
             </div>
         </div>
     </div>

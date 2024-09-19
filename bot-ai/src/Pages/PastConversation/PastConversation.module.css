@@ -1,0 +1,33 @@
+.conversationContainer {
+    height: 98vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    background: linear-gradient(180deg, rgba(215, 199, 244, 0.2) 0%, rgba(151, 133, 186, 0.2) 100%);
+}
+
+.conversationContainer h1 {
+    margin-top: 60px;
+}
+
+.pastConversation {
+    display: grid;
+    grid-template-columns: 208px 1fr; 
+}
+
+.sideBar {
+    width: 208px;
+}
+
+.conversationContent {
+    width: 1015px;
+    height: 551px;
+    overflow-y: scroll;
+}
+
+.cardsContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+}
