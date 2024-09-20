@@ -1,26 +1,23 @@
 import * as React from 'react';
 import Box from '@mui/material/Box';
 import Modal from '@mui/material/Modal';
-import Button from '../Button/Button';
 import Typography from '@mui/material/Typography';
 import bulbIcon from "../../assets/bulb.png"
 import styles from "./MyModal.module.css";
-import { display } from '@mui/system';
 import ThumbDownOffAltIcon from '@mui/icons-material/ThumbDownOffAlt';
 
-const style = {
-  position: 'absolute',
-  top: '50%',
-  left: '50%',
-  transform: 'translate(-50%, -50%)',
-  width: 400,
-  bgcolor: '#FAF7FF',
-  border: '2px solid #000',
-  boxShadow: 24,
-  p: 4,
-  Height: 355,
-  width: 766,
-};
+// const style = {
+//   position: 'absolute',
+//   top: '50%',
+//   left: '50%',
+//   transform: 'translate(-50%, -50%)',
+//   bgcolor: '#FAF7FF',
+//   border: '2px solid #000',
+//   boxShadow: 24,
+//   p: 4,
+//   Height: 355,
+//   width: 766,
+// };
 
 export default function MyModal({setChatQnA}) {
   const [open, setOpen] = React.useState(false);
@@ -47,14 +44,19 @@ export default function MyModal({setChatQnA}) {
 
   return (
     <div>
-      <button className={styles.likeButton} onClick={handleOpen}><ThumbDownOffAltIcon/></button>
+      <button className={styles.likeButton} onClick={handleOpen}>
+        <ThumbDownOffAltIcon 
+        sx={{width: 16, height: 16, opacity: "50%",}}
+        />
+      </button>
+      
       <Modal
         keepMounted
         open={open}
         onClose={handleClose}
       >
-        <Box sx={style}>
-          <form className={style.feedbackForm} onSubmit={handleSubmit}>
+        <Box className={styles.modalStyle}>
+          <form className={styles.feedbackForm} onSubmit={handleSubmit}>
               <Box sx={{display:"flex", justifyContent: "space-between", alignItems: "center", marginBottom: 1}}>
                 <Box sx={{display: "flex", alignItems: "center", gap: 2}}>
                   <img src={bulbIcon} alt="Bulb icon" />
@@ -76,7 +78,7 @@ export default function MyModal({setChatQnA}) {
               </Box>
 
               <Box sx={{textAlign: "end"}}>
-                <button type = "submit" buttonText={"Submit"}>
+                <button className={styles.submitButton} type = "submit" buttonText={"Submit"}>
                   Submit
                 </button>
               </Box>

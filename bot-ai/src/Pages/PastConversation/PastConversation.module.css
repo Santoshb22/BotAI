@@ -21,13 +21,33 @@
 }
 
 .conversationContent {
-    width: 1015px;
+    max-width: 1015px;
     height: 551px;
     overflow-y: scroll;
+    padding: 0px 0.5rem;
 }
 
 .cardsContainer {
-    display: flex;
-    flex-direction: column;
-    gap: 30px;
+    margin: 40px 0px;
+}
+
+.noChats {
+    text-align: center;
+    margin-top: 40px;
+}
+
+
+@media (max-width: 600px) {
+    .pastConversation {
+        display: block;
+    }
+    
+    .sideBar {
+        position: absolute;
+    }
+
+    .conversationContainer h1 {
+        font-size: 20px;
+    }
+    
 }

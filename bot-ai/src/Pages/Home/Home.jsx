@@ -1,7 +1,7 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 import BotAiText from "../../Components/BotAiText";
 import HomeDefault from "../../Components/HomeDefault/HomeDefault";
-import Sidebar from "../../Components/Sidebar/Sidebar"
+import Sidebar from "../../Components/Sidebar/Sidebar";
 import styles from "./Home.module.css";
 import ChatCard from "../../Components/Cards/ChatCard/ChatCard";
 import botAIImg from "../../assets/botAIimg.png";
@@ -12,52 +12,56 @@ const Home = () => {
   const [randomClicked, setRandomClicked] = useState(null);
   const [startChatting, setStartChatting] = useState(false);
   const [chatQnA, setChatQnA] = useState([]);
+  const cardContaineref = useRef();
 
-  const handleStartNewChat = () => {
+  const handleStartNewChat = useCallback(() => {
     setChatQnA([]);
     setStartChatting(false);
-  }
+  }, []);
 
   useEffect(() => {
-    if(randomClicked) {
-      const time = new Date().toLocaleTimeString()
-      setChatQnA((prev) => {
-       return [...prev,
-        { id: randomClicked.id,
-          question: randomClicked.question, 
-          response: randomClicked.response, 
+    if (randomClicked) {
+      const time = new Date().toLocaleTimeString();
+      setChatQnA(prev => [
+        ...prev,
+        {
+          id: randomClicked.id,
+          question: randomClicked.question,
+          response: randomClicked.response,
           bot_img: botAIImg,
           user_img: userImg,
           rating: null,
           feedback: null,
-          message_time: time
-        }]
-      })
+          message_time: time,
+        },
+      ]);
       setStartChatting(true);
     }
-  }, [randomClicked])
+  }, [randomClicked]);
 
+  useEffect(() => {
+    if (cardContaineref.current) {
+      cardContaineref.current.scrollTop = cardContaineref.current.scrollHeight;
+    }
+  }, [chatQnA]);
 
   return (
     <div className={styles.homePage}>
-        <div className={styles.sideBar}>
-            <Sidebar onClick = {handleStartNewChat} />
+      <div className={styles.sideBar}>
+        <Sidebar onClick={handleStartNewChat} />
+      </div>
+      <div className={styles.homeContent}>
+        <div className={styles.botAIText}>
+          <BotAiText />
         </div>
-
-
-        <div className={styles.homeContent}>
-            <div>
-              <BotAiText/>
-            </div>
-
-            <div className={styles.bottomHomeContent}>
-            {startChatting === true ? (
-            <div className={styles.chattingContainer}>
+        <div className={styles.bottomHomeContent}>
+          {startChatting ? (
+            <div className={styles.chattingContainer} ref={cardContaineref}>
               {chatQnA.length > 0 ? (
-                chatQnA.map((data) => (
+                chatQnA.map(data => (
                   <div key={data.id} className={styles.message}>
-                    <ChatCard data={data} showQuestion = {true}/>
-                    <ChatCard data={data} setChatQnA={setChatQnA} showAnswer = {true}/>
+                    <ChatCard data={data} showQuestion={true} />
+                    <ChatCard data={data} setChatQnA={setChatQnA} showAnswer={true} />
                   </div>
                 ))
               ) : (
@@ -69,16 +73,11 @@ const Home = () => {
               <HomeDefault setRandomClicked={setRandomClicked} />
             </div>
           )}
-
-              <InputSection 
-              setChatQnA = {setChatQnA} 
-              setStartChatting = {setStartChatting} 
-              chatQnA = {chatQnA}
-              />
-            </div>
+          <InputSection setChatQnA={setChatQnA} setStartChatting={setStartChatting} chatQnA={chatQnA} />
         </div>
+      </div>
     </div>
-  )
-}
+  );
+};
 
-export default Home
+export default Home;

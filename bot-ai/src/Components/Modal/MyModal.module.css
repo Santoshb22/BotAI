@@ -18,4 +18,57 @@
 
 .likeButton {
     border: none;
+    background-color: white;
+    margin-right: 5px;
+}
+
+
+.submitButton {
+        background-color: #D7C7F4;
+        width: 157px;
+        height: 50px;
+        border: none;
+        border-radius: 12px;
+        font-size: 16px;
+        font-weight: 700;
+}
+
+.modalStyle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: #FAF7FF;
+    border: 2px solid #000;
+    box-shadow: 24;
+    padding: 16px; 
+    height: 355px;
+    width: 766px; 
+}
+
+@media (max-width: 768px) {
+    .modalStyle {
+        width: 80%; 
+        height: auto;
+    }
+
+    
+.feedbackInput {
+    width: 100%;
+    height: 60%;
+}
+}
+
+@media (max-width: 480px) {
+    .modalStyle {
+        width: 90%; 
+    }
+
+    .submitButton {
+        width: 80px;
+        height: 30px;
+        border-radius: 8px;
+        font-size: 12px;
+        font-weight: 700;
+}
 }

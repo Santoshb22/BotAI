@@ -10,6 +10,10 @@ const Button = ({buttonText, onClick}) => {
           lineHeight: "22.98px", borderRadius: "5px", 
           height: 41,
           width: 73,
+          '@media (max-width: 600px)': { 
+          height: 31,
+          width: 53,
+        }
     }} >{buttonText}</MuiButton>
   )
 }

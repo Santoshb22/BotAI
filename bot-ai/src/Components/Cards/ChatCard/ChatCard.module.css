@@ -3,6 +3,8 @@
     height: 69px;
 }
 
+
+
 .soulAI, .you {
     font-weight: 700;
     font-size: 16px;
@@ -18,5 +20,22 @@
     line-height: 12.38px;
     font-family: Ubuntu;
     display: block;
-    color: rgb(164, 163, 163);
+    color: #0000009E;
+    margin-top: 8px;
+}
+
+.likeButton {
+    background-color: white;
+    border: none;
+}
+
+@media (max-width: 480px) {
+    .soulAI, .you {
+        font-size: 10px;
+    }
+
+    .chatCardImg img{
+        width: 29px;
+        height: 29px;
+    }
 }

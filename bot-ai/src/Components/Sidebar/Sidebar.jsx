@@ -9,6 +9,7 @@ import navLogo from "../../assets/nav-logo.png";
 import newChat from "../../assets/new-chat.png";
 import styles from "./Sidebar.module.css";
 import { useNavigate } from 'react-router-dom';
+import MenuIcon from '@mui/icons-material/Menu';
 
 export default function Sidebar({onClick}) {
   const [open, setOpen] = React.useState(false);
@@ -33,7 +34,7 @@ export default function Sidebar({onClick}) {
       
       <Box sx = {{height: 39, width: 175.16, borderRadius: "10px", alignContent: "center", textAlign: "center", marginTop:2, marginX: "auto",  backgroundColor: theme.palette.secondary.light}}>
         <Typography
-         sx={{color: "#414146", fontWeight: 700, fontSize: "16px", cursor: "pointer"}}
+         sx={{color: "#414146", fontWeight: 700, fontSize: {xs: "12px", sm: "16px"}, cursor: "pointer"}}
          onClick = {() => navigate("/past-conversations")}
          >
             Past Conversation
@@ -44,7 +45,9 @@ export default function Sidebar({onClick}) {
 
   return (
     <Box>
-      {isMobile && <Button onClick={toggleDrawer(true)}>Open drawer</Button>}
+      {isMobile && <Button onClick={toggleDrawer(true)}>
+        <MenuIcon sx = {{color: "#9785BA"}} /> 
+      </Button>}
 
       <Drawer
         variant={isMobile ? 'temporary' : 'permanent'}

@@ -7,11 +7,11 @@ import ThumbUpOffAltIcon from '@mui/icons-material/ThumbUpOffAlt';
 import MyModal from '../../Modal/MyModal';
 import { useEffect, useState } from 'react';
 
-export default function ChatCard({data, showQuestion = false, showAnswer = false, setChatQnA}) {
+export default function ChatCard({data, showQuestion = false, showAnswer = false, setChatQnA, showingOldChats = false}) {
 const [value, setValue] = useState(0)
 const [isRating, setIsRating] = useState(false);
-console.log("data:", data)
-const {question, response, bot_img, user_img, feedback, message_time, id} = data
+
+const {question, response, bot_img, user_img, feedback, message_time, rating} = data
 
 const showRating = () => {
     setIsRating(true);
@@ -27,10 +27,17 @@ const handleRating = (newValue) => {
   return (
     <Box>
         <Card 
-            sx={{ maxWidth: 1015, minHeight: 105, 
-            boxShadow: showQuestion && showAnswer ? "none" : "-4px 4px 15px 0px #0000001A",
-            borderRadius: "20px", display: 'flex', justifyContent: "start",
-            alignItems: "center", marginBottom: 1, padding: 1,
+           sx={{ 
+            maxWidth: 1015, 
+            minHeight: 105, 
+            boxShadow: showingOldChats ? "none" : "-4px 4px 15px 0px #0000001A",
+            backgroundColor: showingOldChats ? "#D7C7F4" : "none",
+            borderRadius: !showingOldChats ? "20px" : "none", 
+            display: 'flex', 
+            justifyContent: "start",
+            alignItems: "center", 
+            marginBottom: showingOldChats ? 0 : 1, 
+            padding: 1,
         }}>
             <Box className={styles.chatCardImg}>
                 <img src={showQuestion? user_img: bot_img} alt="user img" />
@@ -39,7 +46,7 @@ const handleRating = (newValue) => {
             <Box>
                 <CardContent >
                     {showQuestion && 
-                    <Typography variant="body1" sx={{ fontSize: "16px" }}>
+                    <Typography variant="body1" sx={{ fontSize: {xs: "12px", sm: "16px"} }}>
                         <span className={styles.you}>You</span>
                         {question}
                         <span className={styles.time}>{message_time}</span>
@@ -47,29 +54,28 @@ const handleRating = (newValue) => {
                 
                     {
                     showAnswer 
-                    && <Box >
-                        <Typography variant="body1" sx={{ fontSize: "16px",}}>
+                    && <Box>
+                        <Typography variant="body1" sx={{ fontSize: {xs: "12px", sm: "16px"}}}>
                         <span className={styles.soulAI}>Soul AI</span>
                         {response}
                         <span className={styles.time}>{message_time}</span>
                         </Typography>
 
-                        <br />
-                        <Box>
-                            <button>
+                        {!showingOldChats && <Box sx={{marginTop: 1}}>
+                            <button className={styles.likeButton}>
                                 <MyModal setChatQnA = {setChatQnA}/>
                             </button>  
 
-                            <button onClick={showRating}>
-                                <ThumbUpOffAltIcon/>
+                            <button className={styles.likeButton} onClick={showRating}>
+                                <ThumbUpOffAltIcon sx={{width: 16, height: 16, opacity: "50%",}} />
                             </button>    
-                        </Box>
+                        </Box>}
 
                             <br />
-                            {isRating && <Box>
+                            {(isRating || (showingOldChats && rating > 0)) && <Box>
                                 <Rating
                                     name="simple-controlled"
-                                    value={value}
+                                    value={rating}
                                     onChange={(event, newValue) => {handleRating(newValue)}}
                                 />
                             </Box>}
@@ -79,6 +85,8 @@ const handleRating = (newValue) => {
                             </Typography>}
                        </Box>
                     }
+
+                    
             </CardContent>
         </Box>
         </Card>

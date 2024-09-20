@@ -4,6 +4,7 @@
     gap: 20px;
     justify-content: center;
     align-items: center;
+    margin: 10px 0px;
 }
 
 .inputBox {
@@ -17,3 +18,9 @@
     margin: 20px 0px;
 }
 
+
+@media (max-width: 600px) {
+    .inputBox {
+        height: 31px;
+    }
+}
