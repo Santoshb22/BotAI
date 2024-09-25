@@ -5,15 +5,16 @@ import botAIImg from "../../assets/botAIimg.png";
 import userImg from "../../assets/userimg.png";
 
 const AskButton = ({ userInput, setUserInput, setStartChatting, setChatQnA }) => {
+
     const handleAsk = useCallback(() => {
         if (!userInput) return;
 
         const matchData = data.find(item => item.question.toLowerCase() === userInput.toLowerCase());
 
         setStartChatting(true);
+        const time = new Date().toLocaleTimeString();
 
         if (matchData) {
-            const time = new Date().toLocaleTimeString();
             setChatQnA(prev => [
                 ...prev, 
                 {
@@ -26,7 +27,17 @@ const AskButton = ({ userInput, setUserInput, setStartChatting, setChatQnA }) =>
                 },
             ]);
         } else {
-            console.log("No matching question found");
+            setChatQnA(prev => [
+                ...prev, 
+                {
+                    id: time,
+                    question: userInput,
+                    response: "As an AI modal I'm not able to response this question",
+                    bot_img: botAIImg,
+                    user_img: userImg,
+                    message_time: time,
+                },
+            ])
         }
 
         setUserInput("");

@@ -44,11 +44,11 @@ export default function MyModal({setChatQnA}) {
 
   return (
     <div>
-      <button className={styles.likeButton} onClick={handleOpen}>
+      <div className={styles.likeButton} onClick={handleOpen}>
         <ThumbDownOffAltIcon 
         sx={{width: 16, height: 16, opacity: "50%",}}
         />
-      </button>
+      </div>
       
       <Modal
         keepMounted
@@ -78,7 +78,7 @@ export default function MyModal({setChatQnA}) {
               </Box>
 
               <Box sx={{textAlign: "end"}}>
-                <button className={styles.submitButton} type = "submit" buttonText={"Submit"}>
+                <button className={styles.submitButton} type = "submit">
                   Submit
                 </button>
               </Box>

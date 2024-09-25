@@ -251,22 +251,22 @@ export const data = [
     },
     {
       "id": 51,
-      "question": "Hi!",
+      "question": "Hi",
       "response": "Hello! How can I help you today?"
     },
     {
       "id": 52,
-      "question": "Hello!",
+      "question": "Hello",
       "response": "Hi there! What’s on your mind?"
     },
     {
       "id": 53,
-      "question": "Hey!",
+      "question": "Hey",
       "response": "Hey! How's it going?"
     },
     {
       "id": 54,
-      "question": "How are you?",
+      "question": "How are you",
       "response": "I'm just a program, but thanks for asking! How about you?"
     },
     {
@@ -276,12 +276,12 @@ export const data = [
     },
     {
       "id": 56,
-      "question": "Good morning!",
+      "question": "Good morning",
       "response": "Good morning! Hope you have a great day!"
     },
     {
       "id": 57,
-      "question": "Good evening!",
+      "question": "Good evening",
       "response": "Good evening! How can I assist you tonight?"
     },
     {
@@ -296,7 +296,7 @@ export const data = [
     },
     {
       "id": 60,
-      "question": "What are you doing?",
+      "question": "What are you doing",
       "response": "Just here, ready to help you with any questions!"
     },
     {
@@ -398,5 +398,5 @@ export const data = [
       "id": 80,
       "question": "Can you sing?",
       "response": "I can't sing, but I can help you find lyrics or music!"
-    }
+    },
   ]
